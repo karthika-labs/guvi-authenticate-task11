@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 
 const Authenticate = require('../models/Authenticate')
-
+// console.log("JWT Secret:", process.env.JWT_SECRET);
 //register
 const registerUser = async (req, res) => {
   try {
@@ -48,7 +48,7 @@ const login = async (req, res) => {
             return res.status(400).json("wrong email or password")
         }
 
-        const token=jwt.sign({_id:user._id},process.env.jwt_secret,{expiresIn:'1d'})
+        const token=jwt.sign({_id:user._id},process.env.JWT_SECRET,{expiresIn:'1d'})
        
         res.json(token)
     }
